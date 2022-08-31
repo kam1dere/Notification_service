@@ -113,9 +113,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
@@ -132,15 +132,18 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# CELERY
 CELERY_BROKER_URL = 'amqp://127.0.0.1:15672/my_vhost'
 
-CELERY_RESULT_BACKEND = 'django-db'
-
-CELERY_CACHE_BACKEND = 'default'
+result_backend = 'redis://127.0.0.1:16379/0'
 
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:16379/0',
+        'LOCATION': 'redis://127.0.0.1:16379/1',
     }
 }
+
+cache_backend = 'default'
+
+timezone = 'Europe/Moscow'

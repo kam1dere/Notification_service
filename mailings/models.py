@@ -31,6 +31,8 @@ class Mailing(models.Model):
 '''
 
 
+
+
 class Client(models.Model):
     TIMEZONE_CHOICES = ((x, x) for x in sorted(zoneinfo.available_timezones(), key=str.lower))
 
@@ -45,6 +47,10 @@ class Client(models.Model):
 
     def __str__(self):
         return f'Клиент {self.pk} номер телефона: {self.phone_number}'
+
+    class Meta:
+        verbose_name = 'Клиент'
+        verbose_name_plural = 'Клиенты'
 
 
 class Message(models.Model):
