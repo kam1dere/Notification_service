@@ -1,3 +1,5 @@
+from django.shortcuts import get_object_or_404
+
 from .models import Mailing, Client, Message
 from .serializers import MailingSerializer, ClientSerializer, MessageSerializer
 from rest_framework import viewsets

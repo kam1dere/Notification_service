@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'mailings.apps.MailingsConfig',
 
     'phonenumber_field',
-    'rest_framework'
+    'rest_framework',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -80,8 +81,12 @@ WSGI_APPLICATION = 'Notification_service.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'db_notification_service',
+        'USER': 'admin',
+        'PASSWORD': 'roiadmin',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -126,3 +131,16 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CELERY_BROKER_URL = 'amqp://127.0.0.1:15672/my_vhost'
+
+CELERY_RESULT_BACKEND = 'django-db'
+
+CELERY_CACHE_BACKEND = 'default'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:16379/0',
+    }
+}
