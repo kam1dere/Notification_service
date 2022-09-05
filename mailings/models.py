@@ -31,8 +31,6 @@ class Mailing(models.Model):
 '''
 
 
-
-
 class Client(models.Model):
     TIMEZONE_CHOICES = ((x, x) for x in sorted(zoneinfo.available_timezones(), key=str.lower))
 
